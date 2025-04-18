@@ -81,6 +81,23 @@ app.get('/top5', async (req, res) => {
 });
 
 
+// Get posts by userId
+app.get('/api/users/:userid/posts', async (req, res) => {
+    try {
+      const { userid } = req.params;
+      const response = await axios.get(`http://20.244.56.144/evaluation-service/users/${userid}/posts`,{
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: "Beara eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQ0OTU0MzQ4LCJpYXQiOjE3NDQ5NTQwNDgsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjQ5MzQ3YmFhLTcwMDktNDIyZS1hY2VlLWI3YmZmZDZhMjhmOSIsInN1YiI6Im1hZGhhdi5iYW5zYWxfY3MyMkBnbGEuYWMuaW4ifSwiZW1haWwiOiJtYWRoYXYuYmFuc2FsX2NzMjJAZ2xhLmFjLmluIiwibmFtZSI6Im1hZGhhdiBiYW5zYWwiLCJyb2xsTm8iOiIyMjE1MDAxMDEyIiwiYWNjZXNzQ29kZSI6IkNObmVHVCIsImNsaWVudElEIjoiNDkzNDdiYWEtNzAwOS00MjJlLWFjZWUtYjdiZmZkNmEyOGY5IiwiY2xpZW50U2VjcmV0IjoiRFZNc0t6eVphUGVKWnN1SyJ9.Eaj8YWRFewYYXvDUXRDNimSQzrFyFWIHbAg-9Jgj1aY"
+    }});
+      res.json(response.data);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching posts' });
+    }
+  });
+
+
+
 
 
 
